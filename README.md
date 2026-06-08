@@ -6,12 +6,13 @@ HRDB 主要用于通过飞书消息、群聊记录和 AI 使用数据的统计�
 
 ## About | 简介
 
-- Track work activity, AI usage frequency, issue patterns, collaboration performance, and trend changes.
-  跟踪工作活跃度、AI 使用频率、问题分布、协作表现和变化趋势。
-- Help you understand people and team operations from a data perspective.
-  帮助你从数据角度了解人员状态和团队运行情况。
-- Use structured statistics instead of subjective judgment.
-  用结构化统计代替主观判断。
+HRDB is mainly designed to help you track people through data statistics.
+
+HRDB 主要就是通过数据统计来帮助你持续跟踪人员情况。
+
+It focuses on work activity, AI usage, issue patterns, collaboration signals, and trend changes.
+
+重点关注工作活跃度、AI 使用情况、问题分布、协作表现和变化趋势。
 
 ## AI Checklist | 给 AI 的检查清单
 
