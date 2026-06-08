@@ -1,60 +1,38 @@
 # HRDB
 
-HRDB is a Codex skill for analyzing Feishu or other work-chat data stored in SQLite.
+HRDB helps you track people through data statistics from Feishu messages, group chats, and AI usage records.
 
-HRDB 是一个给 Codex 用的 skill，用来分析存进 SQLite 的飞书或工作聊天数据。
+HRDB 主要用于通过飞书消息、群聊记录和 AI 使用数据的统计分析，持续跟踪人员情况。
 
-## What It Helps You Do | 它能帮你做什么
+## About | 简介
 
-- Inspect your existing SQLite schema before changing anything.
-  在改动任何数据结构之前，先检查你现有的 SQLite 数据库。
-- Bootstrap a standard HRDB database if you do not have one yet.
-  如果你还没有数据库，可以初始化一个标准 HRDB 数据库。
-- Run realtime ingestion with a background daemon every 5 seconds.
-  用后台守护进程每 5 秒执行一次实时入库。
-- Generate employee, chat, department, and company-level insight reports.
-  生成员工、群聊、部门、公司等维度的分析报告。
-- Keep reporting work-related and privacy-constrained.
-  保持分析范围聚焦工作内容，并遵守隐私约束。
-
-## Simple Onboarding | 简单入门
-
-This project is designed so AI or an operator can adapt it to the real environment first.
-
-这个项目的设计目标是：先让 AI 或操作者根据真实环境做检查，再决定怎么执行。
-
-Do not treat example database names or command placeholders as fixed values.
-
-不要把示例数据库名或命令占位符当成固定值直接照抄。
+- Track work activity, AI usage frequency, issue patterns, collaboration performance, and trend changes.
+  跟踪工作活跃度、AI 使用频率、问题分布、协作表现和变化趋势。
+- Help you understand people and team operations from a data perspective.
+  帮助你从数据角度了解人员状态和团队运行情况。
+- Use structured statistics instead of subjective judgment.
+  用结构化统计代替主观判断。
 
 ## AI Checklist | 给 AI 的检查清单
 
-Use this as plain-text guidance for AI execution.
+Use this project as an environment-adaptive workflow, not a fixed command list.
 
-把下面这段当成 AI 执行前的明文检查清单。
+把这个项目当成“根据现场环境自适应执行的流程”，不要当成固定命令清单。
 
-1. Identify the actual skill root, working directory, database path, and import command in the current environment.
-   先识别当前环境里的 skill 根目录、工作目录、数据库路径、导入命令。
-2. Check whether Python, SQLite, and filesystem write permission are available.
-   检查 Python、SQLite、文件写权限是否可用。
-3. If a SQLite database already exists, inspect its schema first.
-   如果已经存在 SQLite 数据库，先检查它的表结构。
-4. Decide between `adapt-existing-db` and `bootstrap-new-db` based on the real database state.
-   根据真实数据库状态，在 `adapt-existing-db` 和 `bootstrap-new-db` 之间做选择。
-5. If bootstrapping is needed, initialize the database and generate runtime config.
-   如果需要初始化，就创建数据库并生成运行时配置。
-6. Before starting realtime ingestion, confirm the actual import command that should run every 5 seconds.
-   启动实时入库之前，确认每 5 秒执行一次的真实导入命令是什么。
-7. Start the daemon only after the database path and import command have been replaced with real values.
-   只有在数据库路径和导入命令都替换成真实值之后，才启动守护进程。
-8. After startup, verify daemon status, runtime files, and recent logs.
-   启动后检查守护状态、运行时文件和最新日志。
+1. Identify the real skill root, working directory, database path, timezone, and import command.
+   先识别真实的 skill 根目录、工作目录、数据库路径、时区和导入命令。
+2. Check Python, SQLite, and write permission.
+   检查 Python、SQLite 和写权限是否可用。
+3. If a database already exists, inspect the schema first.
+   如果已经有数据库，先检查表结构。
+4. Decide whether to adapt the existing database or bootstrap a new one.
+   判断应该适配现有数据库，还是初始化新库。
+5. Before starting realtime ingestion, confirm the real command that should run every 5 seconds.
+   启动实时入库前，确认每 5 秒执行的真实导入命令。
+6. Replace all placeholders with real values before running anything.
+   执行前先把所有占位符替换成真实值。
 
 ## Command Templates | 命令模板
-
-Replace placeholders with real values before running.
-
-运行前先把占位符替换成真实值。
 
 ```bash
 python3 scripts/check_env.py --db <db_path>
@@ -63,13 +41,6 @@ python3 scripts/init_db.py --db <db_path> --timezone <timezone>
 python3 scripts/ingest_daemon.py start --db <db_path> --import-command "<real_import_command>"
 python3 scripts/ingest_daemon.py status --db <db_path>
 ```
-
-## Recommended Reading Order | 建议阅读顺序
-
-- `SKILL.md`
-- `references/schema_profiles.md`
-- `references/config.example.yaml`
-- `references/runtime_daemon.md`
 
 ## Repository Layout | 仓库结构
 
