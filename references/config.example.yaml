@@ -1,0 +1,36 @@
+database_path: ./hrdb.db
+schema_mode: adapt-existing-db
+taxonomy_profile: general
+language: zh-CN
+
+initial_bound_user:
+  open_id: ""
+  user_id: ""
+  name: ""
+
+sqlite_import_schedule:
+  enabled: true
+  mode: daemon
+  frequency: realtime
+  interval_seconds: 5
+  timezone: Asia/Shanghai
+  command: ""
+
+analysis_push_schedule:
+  enabled: true
+  frequency: weekly
+  day_of_week: saturday
+  time: "10:30"
+  timezone: Asia/Shanghai
+  cron: "30 10 * * 6"
+  push_target_mode: initial_bound_user
+  push_target_type: feishu_user
+  push_target_id: ""
+
+report_scope:
+  period_type: weekly
+  compare_modes:
+    - wow
+    - yoy
+  privacy_level: management
+  output_format: markdown
