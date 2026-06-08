@@ -1,0 +1,9 @@
+*.db
+*.db-*
+*.tick
+hrdb_runtime_config.json
+hrdb_ingest_daemon.pid
+hrdb_ingest_daemon.log
+hrdb_ingest_daemon_state.json
+__pycache__/
+*.pyc
