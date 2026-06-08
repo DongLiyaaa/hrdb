@@ -1,0 +1,4 @@
+interface:
+  display_name: "HRDB"
+  short_description: "Inspect or bootstrap SQLite chat data for privacy-constrained insight reporting"
+  default_prompt: "Analyze this SQLite-backed Feishu or work-chat dataset with HRDB. Inspect the schema first, adapt if possible, and only bootstrap a new schema if needed."
