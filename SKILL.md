@@ -12,8 +12,10 @@ HRDB is a SQLite-first skill for enterprise chat analysis. It is designed for Fe
 Run this before any initialization or reporting step:
 
 ```bash
-python3 scripts/check_env.py --db ./hrdb.db
+python3 scripts/check_env.py --db <db_path>
 ```
+
+Replace `<db_path>` with the real database path in the current environment. Do not assume a fixed path unless the user explicitly provided one.
 
 If the check fails, stop and report the missing dependency with the install command shown by the script.
 
@@ -25,7 +27,7 @@ Choose one mode after inspecting the database:
    - Use when the user already has SQLite tables.
    - Run:
    ```bash
-   python3 scripts/inspect_schema.py --db /path/to/existing.db
+   python3 scripts/inspect_schema.py --db <existing_db_path>
    ```
    - Prefer query adaptation or compatibility views over destructive migration.
 
@@ -33,7 +35,7 @@ Choose one mode after inspecting the database:
    - Use only when the database is empty, missing, or the user explicitly asks for a fresh HRDB-compatible schema.
    - Run:
    ```bash
-   python3 scripts/init_db.py --db ./hrdb.db
+   python3 scripts/init_db.py --db <db_path>
    ```
 
 3. `generate-report`
@@ -85,12 +87,12 @@ The default sync mode is a background daemon:
 
 Set `sqlite_import_schedule.command` in `hrdb_runtime_config.json`, or pass `--import-command` when starting the daemon.
 
-Commands:
+Template:
 
 ```bash
-python3 scripts/ingest_daemon.py start --db ./hrdb.db --import-command "python3 your_ingest_job.py --db {database_path}"
-python3 scripts/ingest_daemon.py status --db ./hrdb.db
-python3 scripts/ingest_daemon.py stop --db ./hrdb.db
+python3 scripts/ingest_daemon.py start --db <db_path> --import-command "<real_import_command>"
+python3 scripts/ingest_daemon.py status --db <db_path>
+python3 scripts/ingest_daemon.py stop --db <db_path>
 ```
 
 ## Reporting Rules
@@ -111,11 +113,24 @@ python3 scripts/ingest_daemon.py stop --db ./hrdb.db
 - Example runtime config: `references/config.example.yaml`
 - Realtime daemon behavior: `references/runtime_daemon.md`
 
-## Quick Commands
+## AI Execution Checklist
+
+Treat this as plain-text guidance for AI execution. Replace all placeholders with real values from the current environment before running anything.
+
+1. Determine the real skill root, working directory, database path, timezone, and import command.
+2. Verify Python, SQLite, and write permission.
+3. If a database already exists, inspect it before deciding on bootstrap.
+4. Choose between `adapt-existing-db` and `bootstrap-new-db` based on the actual schema.
+5. If bootstrapping, generate runtime config and confirm its contents.
+6. Before starting the daemon, make sure `<real_import_command>` is valid and safe to run repeatedly.
+7. Start the daemon only after replacing `<db_path>` and `<real_import_command>` with real values.
+8. After startup, verify daemon status, runtime files, and logs.
+
+## Command Templates
 
 ```bash
-python3 scripts/check_env.py --db ./hrdb.db
-python3 scripts/inspect_schema.py --db ./hrdb.db
-python3 scripts/init_db.py --db ./hrdb.db --timezone Asia/Shanghai
-python3 scripts/ingest_daemon.py start --db ./hrdb.db --import-command "python3 your_ingest_job.py --db {database_path}"
+python3 scripts/check_env.py --db <db_path>
+python3 scripts/inspect_schema.py --db <existing_db_path>
+python3 scripts/init_db.py --db <db_path> --timezone <timezone>
+python3 scripts/ingest_daemon.py start --db <db_path> --import-command "<real_import_command>"
 ```
